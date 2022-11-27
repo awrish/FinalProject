@@ -35,10 +35,20 @@ public class MainActivity extends AppCompatActivity {
         Log.d( DEBUG_TAG, "FinalProject: MainActivity.onCreate()" );
 
         Button signInButton = findViewById(R.id.button1);
-        Button register = findViewById(R.id.button2);
+        Button registerButton = findViewById(R.id.button2);
 
         signInButton.setOnClickListener( new SignInButtonClickListener() );
+        registerButton.setOnClickListener( new RegistrationButtonClickListener() );
 
+    }
+
+    private class RegistrationButtonClickListener implements View.OnClickListener {
+        @Override
+        public void onClick( View view ) {
+            // start the user registration activity
+            Intent intent = new Intent(view.getContext(), RegisterActivity.class);
+            view.getContext().startActivity(intent);
+        }
     }
 
     private class SignInButtonClickListener implements View.OnClickListener {
