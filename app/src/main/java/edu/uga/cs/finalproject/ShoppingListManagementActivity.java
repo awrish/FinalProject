@@ -1,7 +1,10 @@
 package edu.uga.cs.finalproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -23,6 +26,12 @@ public class ShoppingListManagementActivity extends AppCompatActivity {
         Log.d( DEBUG_TAG, "ShoppingListManagementActivity.onCreate()" );
 
         signedInTextView = findViewById( R.id.textView3 );
+
+        Button newListItemButton = findViewById( R.id.button1 );
+        Button viewListButton = findViewById( R.id.button2 );
+
+        newListItemButton.setOnClickListener( new newListItemButtonClickListener() );
+       // viewListButton.setOnClickListener( new ReviewLeadsButtonClickListener() );
 
 
         //newLeadButton.setOnClickListener( new NewLeadButtonClickListener() );
@@ -47,7 +56,21 @@ public class ShoppingListManagementActivity extends AppCompatActivity {
                 }
             }
         });
+    }
 
+    private class newListItemButtonClickListener implements View.OnClickListener {
+        @Override
+        public void onClick (View view ) {
+            Intent intent = new Intent(view.getContext(), NewListItemActivity.class );
+            view.getContext().startActivity( intent );
+        }
+    }
 
+    private class viewListButtonClickListener implements View.OnClickListener {
+        @Override
+        public void onClick (View view) {
+            //Intent intent = new Intent(view.getContext(), ViewListActivity.class );
+            //view.getContext().startActivity(intent);
+        }
     }
 }
