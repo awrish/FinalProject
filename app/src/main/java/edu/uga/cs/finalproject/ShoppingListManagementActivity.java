@@ -31,7 +31,7 @@ public class ShoppingListManagementActivity extends AppCompatActivity {
         Button viewListButton = findViewById( R.id.button2 );
 
         newListItemButton.setOnClickListener( new newListItemButtonClickListener() );
-       // viewListButton.setOnClickListener( new ReviewLeadsButtonClickListener() );
+        viewListButton.setOnClickListener( new viewListButtonClickListener() );
 
 
         //newLeadButton.setOnClickListener( new NewLeadButtonClickListener() );
@@ -69,8 +69,8 @@ public class ShoppingListManagementActivity extends AppCompatActivity {
     private class viewListButtonClickListener implements View.OnClickListener {
         @Override
         public void onClick (View view) {
-            //Intent intent = new Intent(view.getContext(), ViewListActivity.class );
-            //view.getContext().startActivity(intent);
+            Intent intent = new Intent(view.getContext(), ViewListActivity.class );
+            view.getContext().startActivity(intent);
         }
     }
 }

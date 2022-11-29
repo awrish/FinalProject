@@ -84,21 +84,15 @@ public class RegisterActivity extends AppCompatActivity {
                                 catch (FirebaseAuthWeakPasswordException weakPassword)
                                 {
                                     Log.d(DEBUG_TAG, "onComplete: weak_password");
-
-                                    // TODO: take your actions!
                                 }
                                 // if user enters wrong password.
                                 catch (FirebaseAuthInvalidCredentialsException malformedEmail)
                                 {
                                     Log.d(DEBUG_TAG, "onComplete: malformed_email");
-
-                                    // TODO: Take your action
                                 }
                                 catch (FirebaseAuthUserCollisionException existEmail)
                                 {
                                     Log.d(DEBUG_TAG, "onComplete: exist_email");
-
-                                    // TODO: Take your action
                                 }
                                 catch (Exception e)
                                 {

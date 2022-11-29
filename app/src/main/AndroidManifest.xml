@@ -36,6 +36,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="edu.uga.cs.finalproject.MainActivity" />
         </activity>
+        <activity
+            android:name=".NewListItemActivity"
+            android:parentActivityName=".ShoppingListManagementActivity">
+
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.uga.cs.finalproject.ShoppingListManagementActivity" />
+        </activity>
         <activity android:name=".RegisterActivity"
             android:parentActivityName=".MainActivity">
 
@@ -43,6 +52,15 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="edu.uga.cs.finalproject.MainActivity" />
+        </activity>
+        <activity
+            android:name=".ViewListActivity"
+            android:parentActivityName=".ShoppingListManagementActivity">
+
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.uga.cs.finalproject.ShoppingListManagementActivity" />
         </activity>
     </application>
 
