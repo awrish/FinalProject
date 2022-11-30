@@ -55,10 +55,16 @@ public class ListItemRecyclerAdapter extends RecyclerView.Adapter<ListItemRecycl
 
         holder.productName.setText( jobLead.getProductName());
 
-
         //add onClickListener to list item
+        holder.itemView.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick( View v ) {
+                EditProductDialogFragment editProductDialogFragment =
+                        EditProductDialogFragment.newInstance( holder.getAdapterPosition(), key, productName);
+                editProductDialogFragment.show( ((AppCompatActivity)context).getSupportFragmentManager(), null);
+            }
+        });
     }
-
     @Override
     public int getItemCount() {
         return productList.size();
