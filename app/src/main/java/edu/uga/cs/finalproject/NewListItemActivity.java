@@ -16,6 +16,9 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
+/**
+ * For adding new items to the list from the main screen.
+ */
 public class NewListItemActivity extends AppCompatActivity {
 
     public static final String DEBUG_TAG = "NewJobLeadActivity";
@@ -30,6 +33,8 @@ public class NewListItemActivity extends AppCompatActivity {
         itemNameView = findViewById(R.id.editText);
 
         Button saveButton = findViewById(R.id.button);
+
+        saveButton.setOnClickListener(new ButtonClickListener());
     }
 
     private class ButtonClickListener implements View.OnClickListener {
