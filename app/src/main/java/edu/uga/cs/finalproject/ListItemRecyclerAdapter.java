@@ -64,6 +64,8 @@ public class ListItemRecyclerAdapter extends RecyclerView.Adapter<ListItemRecycl
                 editProductDialogFragment.show( ((AppCompatActivity)context).getSupportFragmentManager(), null);
             }
         });
+
+        // TODO
     }
     @Override
     public int getItemCount() {
