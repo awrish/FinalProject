@@ -44,6 +44,15 @@ public class ViewListActivity
 
         recyclerView = findViewById( R.id.recyclerView );
 
+        FloatingActionButton floatingButton = findViewById(R.id.floatingActionButton);
+        floatingButton.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick( View v ) {
+                DialogFragment newFragment = new AddProductDialogFragment();
+                newFragment.show( getSupportFragmentManager(), null);
+            }
+        });
+
         // initialize the Job Lead list
         productsList = new ArrayList<ListItem>();
 
