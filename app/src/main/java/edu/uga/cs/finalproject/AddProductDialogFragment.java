@@ -70,7 +70,6 @@ public class AddProductDialogFragment extends DialogFragment {
 
             // get the Activity's listener to add the new list item
             AddListItemDialogListener listener = (AddListItemDialogListener) getActivity();
-
             // add the new list item
             listener.addListItem( listItem );
 

@@ -3,6 +3,7 @@ package edu.uga.cs.finalproject;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +11,8 @@ import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -21,7 +24,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ViewListActivity
-        extends AppCompatActivity {
+        extends AppCompatActivity
+        implements AddProductDialogFragment.AddListItemDialogListener {
 
 
     public static final String DEBUG_TAG = "ReviewJobLeadsActivity";
@@ -97,6 +101,47 @@ public class ViewListActivity
                 System.out.println( "ValueEventListener: reading failed: " + databaseError.getMessage() );
             }
         } );
+    }
+
+    // this is our own callback for a AddListItemDialogFragment which adds a new product to the list.
+    public void addListItem(ListItem listItem) {
+        // add the new list item
+        // Add a new element (ListItem) to the list in Firebase.
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("shoppinglist");
+
+        // First, a call to push() appends a new node to the existing list (one is created
+        // if this is done for the first time).  Then, we set the value in the newly created
+        // list node to store the new list item.
+        // This listener will be invoked asynchronously, as no need for an AsyncTask, as in
+        // the previous apps to maintain job leads.
+        myRef.push().setValue( listItem )
+                .addOnSuccessListener( new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+
+                        // Reposition the RecyclerView to show the ListItem most recently added (as the last item on the list).
+                        recyclerView.post( new Runnable() {
+                            @Override
+                            public void run() {
+                                recyclerView.smoothScrollToPosition( productsList.size()-1 );
+                            }
+                        } );
+
+                        Log.d( DEBUG_TAG, "List Item saved: " + listItem );
+                        // Show a quick confirmation
+                        Toast.makeText(getApplicationContext(), "List item added named " + listItem.getProductName(),
+                                Toast.LENGTH_SHORT).show();
+
+                    }
+                })
+                .addOnFailureListener( new OnFailureListener() {
+                    @Override
+                    public void onFailure( @NonNull Exception e ) {
+                        Toast.makeText( getApplicationContext(), "Failed to add list item " + listItem.getProductName(),
+                                Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
 }
