@@ -65,7 +65,6 @@ public class ListItemRecyclerAdapter extends RecyclerView.Adapter<ListItemRecycl
             }
         });
 
-        // TODO
     }
     @Override
     public int getItemCount() {
